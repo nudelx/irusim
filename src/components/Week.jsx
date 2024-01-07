@@ -1,44 +1,29 @@
-import { Grid, Typography } from '@mui/material'
+import { Grid } from '@mui/material'
+import PropTypes from 'prop-types'
+import Card from './Card'
 
-const getWeekDays = (date) => {
-  return Array(7)
-    .fill(new Date(date))
-    .map((el, idx) => new Date(el.setDate(el.getDate() - el.getDay() + idx)))
-}
+const Week = ({ days }) => {
+  const week = days && days.slice(0, 5)
+  const weekend = days && days.slice(-2)
 
-const Week = () => {
-  const days = getWeekDays(new Date())
-  console.log('days', days)
   return (
-    <Grid container justifyContent="center">
-      {days.map((d) => (
-        <Grid
-          container
-          flexDirection="column"
-          m={1}
-          key={d.getTime()}
-          sx={{
-            width: '200px',
-            height: '250px',
-            border: '1px solid green',
-            justifyContent: 'flex-start',
-          }}
-        >
-          <Grid item p={1} sx={{ backgroundColor: '#0F467E', color: 'white'}}>
-            <Typography variant='h6'>{d.toLocaleDateString('he', {month: "short", day:"numeric", weekday: 'long',})}</Typography>
-          </Grid>
-          <Grid item container flexDirection="column">
-            <Grid item>
-              <Typography> Alex</Typography>
-            </Grid>
-            <Grid item>
-              <Typography> David</Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-      ))}
+    <Grid container justifyContent="center" rowGap={4}>
+      <Grid item container justifyContent="center">
+        {week.map((d) => (
+          <Card date={d} key={d.getTime()} />
+        ))}
+      </Grid>
+
+      <Grid item container justifyContent="center">
+        {weekend.map((d) => (
+          <Card weekend date={d} key={d.getTime()} />
+        ))}
+      </Grid>
     </Grid>
   )
+}
+Week.propTypes = {
+  days: PropTypes.array,
 }
 
 export default Week
