@@ -6,7 +6,8 @@ git checkout gh-pages
 git pull
 git merge -X theirs main
 git commit -am "version update $(date)"
-rm -rf assets/
+cp t.tmpl.html > index.html
+rm -rf assets/*.
 yarn build
 cp -r dist/* .
 sed  's/\="\//\="\.\//g' index.html > index1.html
