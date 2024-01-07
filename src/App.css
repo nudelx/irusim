@@ -1,7 +1,22 @@
-html {
-  background-color: "white";
+html, body {
+  background-color: 'white';
+  overflow-y: scroll;
 }
 
 html:root {
   background-color: "white";
+}
+.card {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.weekday {
+  background-color: #3a7ab9;
+  color: 'white'
+  
+}
+
+.weekendDay {
+  background-color: #5787b7;
+  color: 'white'
 }

@@ -4,6 +4,12 @@ const HE = {
   today: 'משמרות השבוע',
   edit: 'שינוי',
   add: 'הוספה',
+  name: 'שם',
+  formTitle: `המשמרת`,
+  hours: 'שעות',
+  formHeader:'עדכון שעות',
+  save: 'שמור',
+  cancel:'בטל',
 
 
 }
