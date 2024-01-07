@@ -29,6 +29,7 @@ const updateSize = useCallback(() => {
     <Modal
       open={open}
       onClose={close}
+      size
       sx={{
         justifyContent: 'center',
         alignItems: 'center',
