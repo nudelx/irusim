@@ -5,10 +5,12 @@ import EditIcon from '@mui/icons-material/Edit'
 import HE from '../utils/i18n'
 import { useState } from 'react'
 import Form from './Form'
+import useIsMobile from '../hooks/useIsMobile'
 
 const Card = ({ date, weekend }) => {
   const active = true
   const [open, setOpen] = useState(false)
+  const { isMobile } = useIsMobile()
   return (
     <Grid
       container
@@ -16,8 +18,8 @@ const Card = ({ date, weekend }) => {
       m={1}
       key={date.getTime()}
       sx={{
-        width: '200px',
-        height: '250px',
+        width: isMobile ? '90%' : '200px',
+        height: isMobile ? '300px' :'250px',
         border: '1px solid #d4cdcdba',
         justifyContent: 'space-between',
         borderRadius: '5px',
@@ -42,7 +44,7 @@ const Card = ({ date, weekend }) => {
         </Grid>
         <Grid item>{active ? '🟢' : '🔴'}</Grid>
       </Grid>
-      <Grid item container flexDirection="column" px={1} rowGap={1}>
+      <Grid item container flexDirection="column" px={isMobile ? 3: 1} rowGap={1}>
         <Grid item>
           <Typography>🧑🏼‍✈️ Alex</Typography>
         </Grid>
