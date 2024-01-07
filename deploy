@@ -6,7 +6,7 @@ git checkout gh-pages
 git pull
 git merge -X theirs main
 git commit -am "version update $(date)"
-cp t.tmpl.html > index.html
+cat t.tmpl > index.html
 rm -rf assets/*.
 yarn build
 cp -r dist/* .
