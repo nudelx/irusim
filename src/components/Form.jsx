@@ -7,7 +7,6 @@ import { useDataContext } from '../context/Data'
 
 const Form = ({ date, close, open, shift }) => {
   const hours = '19:00-21:00'
-  console.log('form ', shift)
   const [name1, setName1] = useState(shift?.name1 || '')
   const [name2, setName2] = useState(shift?.name2 || '')
   const { saveShift } = useDataContext()
@@ -67,7 +66,6 @@ const Form = ({ date, close, open, shift }) => {
             justifyContent={'center'}
             alignItems="center"
             columnGap={2}
-            sx={{ border: '1px solid red' }}
             flexWrap="nowrap"
           >
             <Grid
@@ -77,7 +75,6 @@ const Form = ({ date, close, open, shift }) => {
               alignItems="center"
               flex={1}
               flexDirection="row"
-              sx={{ border: '1px solid blue' }}
             >
               <Typography variant="h4" ml={1}>{`🗓️  `}</Typography>
               <Typography variant="h5">
@@ -91,7 +88,6 @@ const Form = ({ date, close, open, shift }) => {
               alignItems="center"
               flex={1}
               flexDirection="row"
-              sx={{ border: '1px solid blue' }}
             >
               <Typography variant="h4" ml={1}>{`⏰ `}</Typography>
               <Typography variant="h5">{hours}</Typography>
