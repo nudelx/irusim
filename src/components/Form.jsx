@@ -1,18 +1,17 @@
 import { Modal, Grid, Typography, Button, TextField, Divider } from '@mui/material'
 import PropTypes from 'prop-types'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import HE from '../utils/i18n'
 import useIsMobile from '../hooks/useIsMobile'
 import { useDataContext } from '../context/Data'
-// import { getWeek } from '../utils/dateUtils'
 
 const Form = ({ date, close, open, shift }) => {
   const hours = '19:00-21:00'
+  console.log('form ', shift)
   const [name1, setName1] = useState(shift?.name1 || '')
   const [name2, setName2] = useState(shift?.name2 || '')
   const { saveShift } = useDataContext()
   const { isMobile } = useIsMobile()
-
   const handleSave = useCallback(() => {
     const shift = {
       name1,
@@ -24,6 +23,11 @@ const Form = ({ date, close, open, shift }) => {
     saveShift({ stringDate: date.toLocaleDateString(), shift })
     close()
   }, [date, close, name1, name2, saveShift])
+
+  useEffect(() => {
+    setName1(shift?.name1 || '')
+    setName2(shift?.name2 || '')
+  }, [shift])
 
   return (
     <Modal
@@ -59,39 +63,49 @@ const Form = ({ date, close, open, shift }) => {
           <Grid
             item
             container
-            flexDirection="row"
-            justifyContent="space-around"
+            flexDirection={isMobile ? 'column' : 'row'}
+            justifyContent={'center'}
             alignItems="center"
             columnGap={2}
+            sx={{ border: '1px solid red' }}
+            flexWrap="nowrap"
           >
-            <Grid item container justifyContent="center " flex={1}>
+            <Grid
+              item
+              container
+              justifyContent="center"
+              alignItems="center"
+              flex={1}
+              flexDirection="row"
+              sx={{ border: '1px solid blue' }}
+            >
               <Typography variant="h4" ml={1}>{`🗓️  `}</Typography>
               <Typography variant="h5">
                 {date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
               </Typography>
             </Grid>
-            <Grid item container justifyContent="flex-start" flex={1}>
-              <Grid
-                item
-                container
-                flexDirection="row"
-                justifyContent="flex-start"
-                alignItems="center"
-                columnGap={2}
-              >
-                <Typography variant="h4">{`⏰ `}</Typography>
-                <Typography variant="h5">{hours}</Typography>
-              </Grid>
+            <Grid
+              item
+              container
+              justifyContent="center"
+              alignItems="center"
+              flex={1}
+              flexDirection="row"
+              sx={{ border: '1px solid blue' }}
+            >
+              <Typography variant="h4" ml={1}>{`⏰ `}</Typography>
+              <Typography variant="h5">{hours}</Typography>
             </Grid>
           </Grid>
 
           <Grid item container justifyContent="center" columnGap={2} mt={3}>
-            <Grid item sx={{ border: '1px solid #ccc' }} p={4}>
+            <Grid item sx={{ border: '1px solid #ccc' }} p={4} xs={isMobile ? 11 : 5}>
               <Grid item>
                 <Typography variant="h5">🧑🏼‍✈️ {HE.name} 1</Typography>
               </Grid>
               <Grid>
                 <TextField
+                  fullWidth
                   id="outlined-basic"
                   label={HE.name}
                   variant="outlined"
@@ -101,12 +115,13 @@ const Form = ({ date, close, open, shift }) => {
               </Grid>
             </Grid>
 
-            <Grid item sx={{ border: '1px solid #ccc' }} p={4}>
+            <Grid item sx={{ border: '1px solid #ccc' }} p={4} xs={isMobile ? 11 : 5}>
               <Grid item>
                 <Typography variant="h5">🧑🏼‍✈️ {HE.name} 2 </Typography>
               </Grid>
               <Grid>
                 <TextField
+                  fullWidth
                   id="outlined-basic"
                   label={HE.name}
                   variant="outlined"
