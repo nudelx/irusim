@@ -1,6 +1,26 @@
 import { createContext, useMemo, useEffect, useContext, useState, useCallback } from 'react'
-import { auth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from '../db/firebase'
+import {
+  auth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  get,
+  child,
+  data,
+} from '../db/firebase'
 import PropTypes from 'prop-types'
+
+get(child(data, 'weeks/'))
+  .then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log('weeks', snapshot.val())
+    } else {
+      console.log('No data available')
+    }
+  })
+  .catch((error) => {
+    console.error(error)
+  })
 
 const INITIAL_STATE = Object.freeze({
   user: null,
