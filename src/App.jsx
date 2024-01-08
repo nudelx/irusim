@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 function App() {
   return (
     <div dir="rtl">
-          <CssBaseline />
+      <CssBaseline />
       <NavBar />
       <Page />
     </div>
