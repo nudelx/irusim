@@ -6,10 +6,10 @@ import useIsMobile from '../hooks/useIsMobile'
 import { useDataContext } from '../context/Data'
 // import { getWeek } from '../utils/dateUtils'
 
-const Form = ({ date, close, open }) => {
+const Form = ({ date, close, open, shift }) => {
   const hours = '19:00-21:00'
-  const [name1, setName1] = useState('')
-  const [name2, setName2] = useState('')
+  const [name1, setName1] = useState(shift?.name1 || '')
+  const [name2, setName2] = useState(shift?.name2 || '')
   const { saveShift } = useDataContext()
   const { isMobile } = useIsMobile()
 
@@ -52,7 +52,7 @@ const Form = ({ date, close, open }) => {
             rowGap={2}
             mb={6}
           >
-            <Typography variant="h3">{`${HE.formHeader} 🕐`}</Typography>
+            <Typography variant="h3" textAlign="center">{` 🕐 ${HE.formHeader} `}</Typography>
             <Divider orientation="horizontal" flexItem variant="middle" />
           </Grid>
 
@@ -60,26 +60,29 @@ const Form = ({ date, close, open }) => {
             item
             container
             flexDirection="row"
-            justifyContent="flex-start"
+            justifyContent="space-around"
             alignItems="center"
             columnGap={2}
           >
-            <Typography variant="h4">{`🗓️ ${HE.formTitle}:`}</Typography>
-            <Typography variant="h5">
-              {date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
-            </Typography>
-          </Grid>
-
-          <Grid
-            item
-            container
-            flexDirection="row"
-            justifyContent="flex-start"
-            alignItems="center"
-            columnGap={2}
-          >
-            <Typography variant="h4">{`⏰ ${HE.hours}:`}</Typography>
-            <Typography variant="h5">{hours}</Typography>
+            <Grid item container justifyContent="center " flex={1}>
+              <Typography variant="h4" ml={1}>{`🗓️  `}</Typography>
+              <Typography variant="h5">
+                {date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
+              </Typography>
+            </Grid>
+            <Grid item container justifyContent="flex-start" flex={1}>
+              <Grid
+                item
+                container
+                flexDirection="row"
+                justifyContent="flex-start"
+                alignItems="center"
+                columnGap={2}
+              >
+                <Typography variant="h4">{`⏰ `}</Typography>
+                <Typography variant="h5">{hours}</Typography>
+              </Grid>
+            </Grid>
           </Grid>
 
           <Grid item container justifyContent="center" columnGap={2} mt={3}>
@@ -130,6 +133,7 @@ const Form = ({ date, close, open }) => {
 
 Form.propTypes = {
   date: PropTypes.object,
+  shift: PropTypes.object,
   open: PropTypes.bool,
   close: PropTypes.func,
 }

@@ -6,11 +6,16 @@ import HE from '../utils/i18n'
 import { useState } from 'react'
 import Form from './Form'
 import useIsMobile from '../hooks/useIsMobile'
+import { useDataContext } from '../context/Data'
 
 const Card = ({ date, weekend }) => {
-  const active = true
   const [open, setOpen] = useState(false)
   const { isMobile } = useIsMobile()
+  const { shifts = {} } = useDataContext()
+  const key = date.toLocaleDateString().replaceAll('/', '_')
+  const currentShift = shifts[key] || {}
+  console.log('currentShift', currentShift)
+  const active = currentShift?.name1 && currentShift?.name2
   return (
     <Grid
       container
@@ -19,7 +24,7 @@ const Card = ({ date, weekend }) => {
       mb={isMobile ? 8 : 1}
       key={date.getTime()}
       sx={{
-        width: isMobile ? '90%' : '200px',
+        width: isMobile ? '90%' : '250px',
         height: isMobile ? '300px' : '250px',
         border: '1px solid #d4cdcdba',
         justifyContent: 'space-between',
@@ -40,17 +45,18 @@ const Card = ({ date, weekend }) => {
       >
         <Grid item>
           <Typography variant="h6" color={'white'}>
-            {date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
+            {'🗓️ ' +
+              date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
           </Typography>
         </Grid>
         <Grid item>{active ? '🟢' : '🔴'}</Grid>
       </Grid>
       <Grid item container flexDirection="column" px={isMobile ? 3 : 1} rowGap={1}>
         <Grid item>
-          <Typography>🧑🏼‍✈️ Alex</Typography>
+          <Typography variant="h6">{`🧑🏼‍✈️ ${currentShift?.name1 || '--'}`}</Typography>
         </Grid>
         <Grid item>
-          <Typography>🧑🏼‍✈️ David</Typography>
+          <Typography variant="h6">{`🧑🏼‍✈️ ${currentShift?.name2 || '--'}`}</Typography>
         </Grid>
       </Grid>
 
@@ -67,7 +73,7 @@ const Card = ({ date, weekend }) => {
           </Typography>
         </Button>
       </Grid>
-      <Form open={open} date={date} close={() => setOpen(false)} />
+      <Form open={open} date={date} close={() => setOpen(false)} shift={currentShift} />
     </Grid>
   )
 }
