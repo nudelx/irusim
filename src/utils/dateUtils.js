@@ -1,4 +1,3 @@
-
 export const getWeekDays = (date) => {
   return Array(7)
     .fill(new Date(date))
