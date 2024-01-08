@@ -42,8 +42,9 @@ const Login = () => {
           alignItems="center"
           flexDirection="column"
           rowGap={3}
+          flexWrap="nowrap"
         >
-          <Grid item xs={isMobile ? 10 : 4}>
+          <Grid item xs={isMobile ? 11 : 4}>
             <TextField
               margin="normal"
               required
