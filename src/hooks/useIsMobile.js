@@ -10,11 +10,11 @@ const useIsMobile = () => {
   useEffect(() => {
     addEventListener('resize', updateSize)
     return () => removeEventListener('resize', updateSize)
-  },[updateSize] )
+  }, [updateSize])
 
   useEffect(() => {
-    window.outerWidth <= 600 ? setIsMobile(true) : setIsMobile(false)  
-  },[])
+    window.outerWidth <= 600 ? setIsMobile(true) : setIsMobile(false)
+  }, [])
 
   return {
     updateSize,

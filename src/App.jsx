@@ -1,15 +1,14 @@
 import './App.css'
-import NavBar from './components/NavBar'
-import Page from './components/Page'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import { AuthContextProvider } from './context/Auth'
+import Gate from './components/Gate'
 
 function App() {
   return (
-    <div dir="rtl">
+    <AuthContextProvider>
       <CssBaseline />
-      <NavBar />
-      <Page />
-    </div>
+      <Gate />
+    </AuthContextProvider>
   )
 }
 

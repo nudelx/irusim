@@ -19,7 +19,7 @@ const Card = ({ date, weekend }) => {
       key={date.getTime()}
       sx={{
         width: isMobile ? '90%' : '200px',
-        height: isMobile ? '300px' :'250px',
+        height: isMobile ? '300px' : '250px',
         border: '1px solid #d4cdcdba',
         justifyContent: 'space-between',
         borderRadius: '5px',
@@ -44,7 +44,7 @@ const Card = ({ date, weekend }) => {
         </Grid>
         <Grid item>{active ? '🟢' : '🔴'}</Grid>
       </Grid>
-      <Grid item container flexDirection="column" px={isMobile ? 3: 1} rowGap={1}>
+      <Grid item container flexDirection="column" px={isMobile ? 3 : 1} rowGap={1}>
         <Grid item>
           <Typography>🧑🏼‍✈️ Alex</Typography>
         </Grid>

@@ -7,11 +7,13 @@ const HE = {
   name: 'שם',
   formTitle: `המשמרת`,
   hours: 'שעות',
-  formHeader:'עדכון שעות',
+  formHeader: 'עדכון שעות',
   save: 'שמור',
-  cancel:'בטל',
-
-
+  cancel: 'בטל',
+  username: 'שם משתמש',
+  password: 'סיסמה',
+  login: 'כניסה',
+  logout: `יְצִיאָה`,
 }
 
 export default HE
