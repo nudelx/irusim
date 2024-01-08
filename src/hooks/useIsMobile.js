@@ -13,7 +13,7 @@ const useIsMobile = () => {
   },[updateSize] )
 
   useEffect(() => {
-    window.outerWidth <= 600 ? setIsMobile(true) : setIsMobile(false)
+    window.outerWidth <= 600 ? setIsMobile(true) : setIsMobile(false)  
   },[])
 
   return {
