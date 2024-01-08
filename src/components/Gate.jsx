@@ -9,7 +9,6 @@ const Loading = () => (
   <Grid
     container
     sx={{
-      border: '1px solid red',
       position: 'absolute',
       top: 0,
       left: 0,
@@ -25,8 +24,6 @@ const Loading = () => (
 
 const Gate = () => {
   const { user, loading, SignOut } = useAuthContext()
-  console.log('user', user)
-  console.log('loading', loading)
   if (loading) return <Loading />
   return (
     <>

@@ -1,26 +1,6 @@
 import { createContext, useMemo, useEffect, useContext, useState, useCallback } from 'react'
-import {
-  auth,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-  get,
-  child,
-  data,
-} from '../db/firebase'
+import { auth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from '../db/firebase'
 import PropTypes from 'prop-types'
-
-get(child(data, 'weeks/'))
-  .then((snapshot) => {
-    if (snapshot.exists()) {
-      console.log('weeks', snapshot.val())
-    } else {
-      console.log('No data available')
-    }
-  })
-  .catch((error) => {
-    console.error(error)
-  })
 
 const INITIAL_STATE = Object.freeze({
   user: null,
@@ -39,8 +19,6 @@ export const AuthContextProvider = ({ children }) => {
     signInWithEmailAndPassword(auth, user, pass)
       .then((userCredential) => {
         const user = userCredential.user
-        console.log('userCredential', userCredential)
-        console.log('user', user)
         setUser(user)
         setLoading(false)
       })
@@ -54,7 +32,6 @@ export const AuthContextProvider = ({ children }) => {
     setLoading(true)
     signOut(auth)
       .then(() => {
-        console.log('Signed out successfully')
         setUser(null)
         setLoading(false)
       })
@@ -68,8 +45,6 @@ export const AuthContextProvider = ({ children }) => {
     setLoading(true)
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid
-        console.log('uid', uid)
         setUser(user)
         setLoading(false)
       } else {

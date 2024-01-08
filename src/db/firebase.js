@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
 import { getAuth } from 'firebase/auth'
 import { getDatabase, ref } from 'firebase/database'
-export { ref, onValue, get, child } from 'firebase/database'
+export { ref, onValue, get, child, set } from 'firebase/database'
 export { signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -22,4 +22,5 @@ export const app = initializeApp(firebaseConfig)
 export const analytics = getAnalytics(app)
 export const auth = getAuth(app)
 export const database = getDatabase(app)
-export const data = ref(database)
+export const db = ref(database)
+export const dbName = 'shifts'

@@ -1,27 +1,37 @@
 import { Modal, Grid, Typography, Button, TextField, Divider } from '@mui/material'
 import PropTypes from 'prop-types'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import HE from '../utils/i18n'
 import useIsMobile from '../hooks/useIsMobile'
+import { useDataContext } from '../context/Data'
 
-const Form = ({ date, close, open }) => {
+const Form = ({ date, close, open, shift }) => {
   const hours = '19:00-21:00'
-  const [duty, setDuty] = useState({})
-
+  const [name1, setName1] = useState(shift?.name1 || '')
+  const [name2, setName2] = useState(shift?.name2 || '')
+  const { saveShift } = useDataContext()
   const { isMobile } = useIsMobile()
-
   const handleSave = useCallback(() => {
-    console.log(setDuty)
-    console.log(duty)
-    console.log(date)
+    const shift = {
+      name1,
+      name2,
+      date,
+      hours,
+    }
+    console.log(shift)
+    saveShift({ stringDate: date.toLocaleDateString(), shift })
     close()
-  }, [setDuty, duty, date, close])
+  }, [date, close, name1, name2, saveShift])
+
+  useEffect(() => {
+    setName1(shift?.name1 || '')
+    setName2(shift?.name2 || '')
+  }, [shift])
 
   return (
     <Modal
       open={open}
       onClose={close}
-      size
       sx={{
         justifyContent: 'center',
         alignItems: 'center',
@@ -45,52 +55,75 @@ const Form = ({ date, close, open }) => {
             rowGap={2}
             mb={6}
           >
-            <Typography variant="h3">{`${HE.formHeader} 🕐`}</Typography>
+            <Typography variant="h3" textAlign="center">{` 🕐 ${HE.formHeader} `}</Typography>
             <Divider orientation="horizontal" flexItem variant="middle" />
           </Grid>
 
           <Grid
             item
             container
-            flexDirection="row"
-            justifyContent="flex-start"
+            flexDirection={isMobile ? 'column' : 'row'}
+            justifyContent={'center'}
             alignItems="center"
             columnGap={2}
+            flexWrap="nowrap"
           >
-            <Typography variant="h4">{`🗓️ ${HE.formTitle}:`}</Typography>
-            <Typography variant="h5">
-              {date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
-            </Typography>
-          </Grid>
-
-          <Grid
-            item
-            container
-            flexDirection="row"
-            justifyContent="flex-start"
-            alignItems="center"
-            columnGap={2}
-          >
-            <Typography variant="h4">{`⏰ ${HE.hours}:`}</Typography>
-            <Typography variant="h5">{hours}</Typography>
+            <Grid
+              item
+              container
+              justifyContent="center"
+              alignItems="center"
+              flex={1}
+              flexDirection="row"
+            >
+              <Typography variant="h4" ml={1}>{`🗓️  `}</Typography>
+              <Typography variant="h5">
+                {date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              container
+              justifyContent="center"
+              alignItems="center"
+              flex={1}
+              flexDirection="row"
+            >
+              <Typography variant="h4" ml={1}>{`⏰ `}</Typography>
+              <Typography variant="h5">{hours}</Typography>
+            </Grid>
           </Grid>
 
           <Grid item container justifyContent="center" columnGap={2} mt={3}>
-            <Grid item sx={{ border: '1px solid #ccc' }} p={4}>
+            <Grid item sx={{ border: '1px solid #ccc' }} p={4} xs={isMobile ? 11 : 5}>
               <Grid item>
                 <Typography variant="h5">🧑🏼‍✈️ {HE.name} 1</Typography>
               </Grid>
               <Grid>
-                <TextField id="outlined-basic" label={HE.name} variant="outlined" />
+                <TextField
+                  fullWidth
+                  id="outlined-basic"
+                  label={HE.name}
+                  variant="outlined"
+                  value={name1}
+                  onChange={(e) => setName1(e.target.value)}
+                />
               </Grid>
             </Grid>
 
-            <Grid item sx={{ border: '1px solid #ccc' }} p={4}>
+            <Grid item sx={{ border: '1px solid #ccc' }} p={4} xs={isMobile ? 11 : 5}>
               <Grid item>
                 <Typography variant="h5">🧑🏼‍✈️ {HE.name} 2 </Typography>
               </Grid>
               <Grid>
-                <TextField id="outlined-basic" label={HE.name} variant="outlined" />
+                <TextField
+                  fullWidth
+                  id="outlined-basic"
+                  label={HE.name}
+                  variant="outlined"
+                  value={name2}
+                  onChange={(e) => setName2(e.target.value)}
+                />
               </Grid>
             </Grid>
           </Grid>
@@ -111,6 +144,7 @@ const Form = ({ date, close, open }) => {
 
 Form.propTypes = {
   date: PropTypes.object,
+  shift: PropTypes.object,
   open: PropTypes.bool,
   close: PropTypes.func,
 }

@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Box from '@mui/material/Box'
-import MenuIcon from '@mui/icons-material/Menu'
+// import MenuIcon from '@mui/icons-material/Menu'
 import HE from '../utils/i18n'
 import PropTypes from 'prop-types'
 
@@ -13,9 +13,9 @@ const NavBar = ({ signOut, user }) => (
     <AppBar>
       <Toolbar>
         <IconButton size="large" edge="start" color="inherit" aria-label="menu">
-          <MenuIcon />
+          {/* <MenuIcon /> */}
         </IconButton>
-        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }} pr={2}>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} pr={2}>
           {`🧑🏼‍✈️ ${HE.title}`}
         </Typography>
         {user && (
