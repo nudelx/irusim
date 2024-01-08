@@ -3,25 +3,32 @@ import PropTypes from 'prop-types'
 import { useCallback, useState } from 'react'
 import HE from '../utils/i18n'
 import useIsMobile from '../hooks/useIsMobile'
+import { useDataContext } from '../context/Data'
+// import { getWeek } from '../utils/dateUtils'
 
 const Form = ({ date, close, open }) => {
   const hours = '19:00-21:00'
-  const [duty, setDuty] = useState({})
-
+  const [name1, setName1] = useState('')
+  const [name2, setName2] = useState('')
+  const { saveShift } = useDataContext()
   const { isMobile } = useIsMobile()
 
   const handleSave = useCallback(() => {
-    console.log(setDuty)
-    console.log(duty)
-    console.log(date)
+    const shift = {
+      name1,
+      name2,
+      date,
+      hours,
+    }
+    console.log(shift)
+    saveShift({ stringDate: date.toLocaleDateString(), shift })
     close()
-  }, [setDuty, duty, date, close])
+  }, [date, close, name1, name2, saveShift])
 
   return (
     <Modal
       open={open}
       onClose={close}
-      size
       sx={{
         justifyContent: 'center',
         alignItems: 'center',
@@ -81,7 +88,13 @@ const Form = ({ date, close, open }) => {
                 <Typography variant="h5">🧑🏼‍✈️ {HE.name} 1</Typography>
               </Grid>
               <Grid>
-                <TextField id="outlined-basic" label={HE.name} variant="outlined" />
+                <TextField
+                  id="outlined-basic"
+                  label={HE.name}
+                  variant="outlined"
+                  value={name1}
+                  onChange={(e) => setName1(e.target.value)}
+                />
               </Grid>
             </Grid>
 
@@ -90,7 +103,13 @@ const Form = ({ date, close, open }) => {
                 <Typography variant="h5">🧑🏼‍✈️ {HE.name} 2 </Typography>
               </Grid>
               <Grid>
-                <TextField id="outlined-basic" label={HE.name} variant="outlined" />
+                <TextField
+                  id="outlined-basic"
+                  label={HE.name}
+                  variant="outlined"
+                  value={name2}
+                  onChange={(e) => setName2(e.target.value)}
+                />
               </Grid>
             </Grid>
           </Grid>
