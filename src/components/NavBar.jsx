@@ -12,10 +12,10 @@ const NavBar = ({ signOut, user }) => (
   <Box sx={{ flexGrow: 1 }}>
     <AppBar>
       <Toolbar>
-        <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+        <IconButton size="large" edge="start" color="inherit" aria-label="menu">
           <MenuIcon />
         </IconButton>
-        <Typography variant="h4" component="div" sx={{ flexGrow: 1 }} pr={2}>
+        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }} pr={2}>
           {`🧑🏼‍✈️ ${HE.title}`}
         </Typography>
         {user && (

@@ -16,6 +16,7 @@ const Card = ({ date, weekend }) => {
       container
       flexDirection="column"
       m={1}
+      mb={isMobile ? 8 : 1}
       key={date.getTime()}
       sx={{
         width: isMobile ? '90%' : '200px',
