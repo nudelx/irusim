@@ -14,7 +14,7 @@ const Indicator = ({ active }) => (
       width: '20px',
       height: '20px',
       borderRadius: '50%',
-      backgroundColor: active ? '#0eb60e' : '#ff4242',
+      backgroundColor: active ? '#218621' : '#db0000',
     }}
   ></Box>
 )
@@ -60,7 +60,7 @@ const Card = ({ date, weekend }) => {
         px={3}
       >
         <Grid item>
-          <Typography variant="h6" color={'#454545'}>
+          <Typography variant="h6" color={'#111'}>
             {date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
           </Typography>
         </Grid>

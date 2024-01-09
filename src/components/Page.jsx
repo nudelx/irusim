@@ -23,7 +23,7 @@ const Page = () => {
             {` ${firstString} - ${lastString}`}{' '}
           </Typography>
         </Grid>
-        <Grid container mt={5}>
+        <Grid container mt={5} justifyContent="center">
           <Grid item>
             <Week days={days} />
           </Grid>
