@@ -4,6 +4,7 @@ import Login from './Login'
 import { useAuthContext } from '../context/Auth'
 import CircularProgress from '@mui/material/CircularProgress'
 import { Grid } from '@mui/material'
+import { DataProvider } from '../context/Data'
 
 const Loading = () => (
   <Grid
@@ -28,10 +29,12 @@ const Gate = () => {
   return (
     <>
       {user ? (
-        <div dir="rtl">
-          <NavBar signOut={SignOut} user={user} />
-          <Page />
-        </div>
+        <DataProvider>
+          <div dir="rtl">
+            <NavBar signOut={SignOut} user={user} />
+            <Page />
+          </div>
+        </DataProvider>
       ) : (
         <Login />
       )}
