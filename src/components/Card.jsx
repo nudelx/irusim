@@ -1,4 +1,4 @@
-import { Grid, Typography, Button } from '@mui/material'
+import { Grid, Typography, Button, Box } from '@mui/material'
 import PropTypes from 'prop-types'
 import AddIcon from '@mui/icons-material/Add'
 import EditIcon from '@mui/icons-material/Edit'
@@ -8,10 +8,26 @@ import Form from './Form'
 import useIsMobile from '../hooks/useIsMobile'
 import { useDataContext } from '../context/Data'
 
+const Indicator = ({ active }) => (
+  <Box
+    sx={{
+      width: '20px',
+      height: '20px',
+      borderRadius: '50%',
+      backgroundColor: active ? ' #35d635' : '#ff7575',
+    }}
+  ></Box>
+)
+
+Indicator.propTypes = {
+  active: PropTypes.bool,
+}
+
 const Card = ({ date, weekend }) => {
   const [open, setOpen] = useState(false)
   const { isMobile } = useIsMobile()
   const { shifts = {} } = useDataContext()
+  const today = new Date().toLocaleDateString().replaceAll('/', '_')
   const key = date.toLocaleDateString().replaceAll('/', '_')
   const currentShift = shifts[key] || {}
   console.log('currentShift', currentShift)
@@ -28,11 +44,11 @@ const Card = ({ date, weekend }) => {
         height: isMobile ? '300px' : '250px',
         border: '1px solid #d4cdcdba',
         justifyContent: 'space-between',
-        borderRadius: '5px',
+        borderRadius: '8px',
         overflow: 'hidden',
         pb: 2,
       }}
-      className="card"
+      className={`${today === key ? 'today' : 'card'}`}
     >
       <Grid
         container
@@ -45,11 +61,12 @@ const Card = ({ date, weekend }) => {
       >
         <Grid item>
           <Typography variant="h6" color={'white'}>
-            {'🗓️ ' +
-              date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
+            {date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
           </Typography>
         </Grid>
-        <Grid item>{active ? '🟢' : '🔴'}</Grid>
+        <Grid item pl={1}>
+          <Indicator active={active} />
+        </Grid>
       </Grid>
       <Grid item container flexDirection="column" px={isMobile ? 3 : 1} rowGap={1}>
         <Grid item>

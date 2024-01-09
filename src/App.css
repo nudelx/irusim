@@ -7,7 +7,11 @@ html:root {
   background-color: "white";
 }
 .card {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px; */
+}
+
+.today {
+    /* box-shadow: rgba(0, 255, 0, 0.8) 0px 2px 10px; */
 }
 
 .weekday {
