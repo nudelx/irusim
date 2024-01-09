@@ -7,12 +7,12 @@ git pull
 git merge -X theirs main
 git commit -am "version update $(date)"
 cat t.tmpl > index.html
-rm -rf assets/*.
+rm -rf assets
 yarn build
-cp -r dist/* .
+cp -rf dist/* .
 sed  's/\="\//\="\.\//g' index.html > index1.html
 cat index1.html > index.html
-rm index1.html
+rm -f index1.html
 
 # sed  's/n.p\+"static\/media\//"\.\/static\/media\//g' static/js/*.js > static/js/t.js
 # file=$(ls static/js/*.js | grep main)
