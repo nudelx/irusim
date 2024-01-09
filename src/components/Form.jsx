@@ -97,7 +97,7 @@ const Form = ({ date, close, open, shift }) => {
           <Grid item container justifyContent="center" columnGap={2} mt={3}>
             <Grid item sx={{ border: '1px solid #ccc' }} p={4} xs={isMobile ? 11 : 5}>
               <Grid item>
-                <Typography variant="h5">🧑🏼‍✈️ {HE.name} 1</Typography>
+                <Typography variant="subtitle1">🧑🏼‍✈️ {HE.name} 1</Typography>
               </Grid>
               <Grid>
                 <TextField
@@ -107,13 +107,14 @@ const Form = ({ date, close, open, shift }) => {
                   variant="outlined"
                   value={name1}
                   onChange={(e) => setName1(e.target.value)}
+                  inputProps={{ style: { fontSize: 22 } }}
                 />
               </Grid>
             </Grid>
 
             <Grid item sx={{ border: '1px solid #ccc' }} p={4} xs={isMobile ? 11 : 5}>
               <Grid item>
-                <Typography variant="h5">🧑🏼‍✈️ {HE.name} 2 </Typography>
+                <Typography variant="subtitle1">🧑🏼‍✈️ {HE.name} 2 </Typography>
               </Grid>
               <Grid>
                 <TextField
@@ -123,6 +124,7 @@ const Form = ({ date, close, open, shift }) => {
                   variant="outlined"
                   value={name2}
                   onChange={(e) => setName2(e.target.value)}
+                  inputProps={{ style: { fontSize: 22 } }}
                 />
               </Grid>
             </Grid>
