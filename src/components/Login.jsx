@@ -10,7 +10,7 @@ const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const { isMobile } = useIsMobile()
-  const { SignIn } = useAuthContext()
+  const { SignIn, error } = useAuthContext()
   const handleLogin = useCallback(
     () =>
       SignIn({
@@ -35,6 +35,13 @@ const Login = () => {
             {HE.title}
           </Typography>
         </Grid>
+        {error && (
+          <Grid item container justifyContent="center">
+            <Typography variant="body" color="red">
+              {error}
+            </Typography>
+          </Grid>
+        )}
         <Grid
           container
           mt={1}

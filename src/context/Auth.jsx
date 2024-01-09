@@ -13,6 +13,7 @@ export const useAuthContext = () => useContext(AuthContext)
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   const SignIn = useCallback(({ user, pass }) => {
     setLoading(true)
@@ -24,6 +25,7 @@ export const AuthContextProvider = ({ children }) => {
       })
       .catch((errors) => {
         console.log(errors)
+        setError(errors.message)
         setLoading(false)
       })
   }, [])
@@ -37,6 +39,7 @@ export const AuthContextProvider = ({ children }) => {
       })
       .catch((error) => {
         console.log(error)
+        setError(error)
         setLoading(false)
       })
   }, [])
@@ -61,8 +64,9 @@ export const AuthContextProvider = ({ children }) => {
       SignIn,
       loading,
       SignOut,
+      error,
     }),
-    [setUser, user, SignIn, loading, SignOut],
+    [setUser, user, SignIn, loading, SignOut, error],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
