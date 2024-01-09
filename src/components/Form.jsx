@@ -53,10 +53,10 @@ const Form = ({ date, close, open, shift }) => {
             justifyContent="center"
             alignItems="center"
             rowGap={2}
-            mb={6}
+            mb={3}
           >
-            <Typography variant="h3" textAlign="center">{` 🕐 ${HE.formHeader} `}</Typography>
-            <Divider orientation="horizontal" flexItem variant="middle" />
+            <Typography variant="h3" textAlign="center">{`${HE.formHeader} `}</Typography>
+            {/* <Divider orientation="horizontal" flexItem variant="middle" /> */}
           </Grid>
 
           <Grid
@@ -71,33 +71,39 @@ const Form = ({ date, close, open, shift }) => {
             <Grid
               item
               container
-              justifyContent="center"
+              justifyContent={isMobile ? 'center' : 'flex-end'}
               alignItems="center"
-              flex={1}
               flexDirection="row"
+              flexWrap="nowrap"
             >
               <Typography variant="h4" ml={1}>{`🗓️  `}</Typography>
-              <Typography variant="h5">
+              <Typography variant="h5" noWrap>
                 {date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
               </Typography>
             </Grid>
             <Grid
               item
               container
-              justifyContent="center"
+              justifyContent={isMobile ? 'center' : 'flex-start'}
               alignItems="center"
-              flex={1}
               flexDirection="row"
+              flexWrap="nowrap"
             >
               <Typography variant="h4" ml={1}>{`⏰ `}</Typography>
-              <Typography variant="h5">{hours}</Typography>
+              <Typography variant="h5" noWrap>
+                {hours}
+              </Typography>
             </Grid>
           </Grid>
 
+          <Grid item mt={3}>
+            <Divider orientation="horizontal" flexItem variant="middle" />
+          </Grid>
+
           <Grid item container justifyContent="center" columnGap={2} mt={3}>
-            <Grid item sx={{ border: '1px solid #ccc' }} p={4} xs={isMobile ? 11 : 5}>
+            <Grid item sx={{ border: '0px solid #ccc' }} p={4} xs={isMobile ? 11 : 5}>
               <Grid item>
-                <Typography variant="subtitle1">🧑🏼‍✈️ {HE.name} 1</Typography>
+                <Typography variant="subtitle1">🧑🏼‍✈️ {HE.sayar} 1</Typography>
               </Grid>
               <Grid>
                 <TextField
@@ -112,9 +118,9 @@ const Form = ({ date, close, open, shift }) => {
               </Grid>
             </Grid>
 
-            <Grid item sx={{ border: '1px solid #ccc' }} p={4} xs={isMobile ? 11 : 5}>
+            <Grid item sx={{ border: '0px solid #ccc' }} p={4} xs={isMobile ? 11 : 5}>
               <Grid item>
-                <Typography variant="subtitle1">🧑🏼‍✈️ {HE.name} 2 </Typography>
+                <Typography variant="subtitle1">🧑🏼‍✈️ {HE.sayar} 2 </Typography>
               </Grid>
               <Grid>
                 <TextField

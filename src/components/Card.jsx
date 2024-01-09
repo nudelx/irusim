@@ -1,4 +1,4 @@
-import { Grid, Typography, Button } from '@mui/material'
+import { Grid, Typography, Button, Box } from '@mui/material'
 import PropTypes from 'prop-types'
 import AddIcon from '@mui/icons-material/Add'
 import EditIcon from '@mui/icons-material/Edit'
@@ -8,10 +8,26 @@ import Form from './Form'
 import useIsMobile from '../hooks/useIsMobile'
 import { useDataContext } from '../context/Data'
 
+const Indicator = ({ active }) => (
+  <Box
+    sx={{
+      width: '20px',
+      height: '20px',
+      borderRadius: '50%',
+      backgroundColor: active ? '#0eb60e' : '#ff4242',
+    }}
+  ></Box>
+)
+
+Indicator.propTypes = {
+  active: PropTypes.bool,
+}
+
 const Card = ({ date, weekend }) => {
   const [open, setOpen] = useState(false)
   const { isMobile } = useIsMobile()
   const { shifts = {} } = useDataContext()
+  const today = new Date().toLocaleDateString().replaceAll('/', '_')
   const key = date.toLocaleDateString().replaceAll('/', '_')
   const currentShift = shifts[key] || {}
   console.log('currentShift', currentShift)
@@ -25,33 +41,34 @@ const Card = ({ date, weekend }) => {
       key={date.getTime()}
       sx={{
         width: isMobile ? '90%' : '250px',
-        height: isMobile ? '300px' : '250px',
+        height: isMobile ? '300px' : '260px',
         border: '1px solid #d4cdcdba',
         justifyContent: 'space-between',
-        borderRadius: '5px',
+        borderRadius: '8px',
         overflow: 'hidden',
         pb: 2,
       }}
-      className="card"
+      className={`${today === key ? 'today' : 'card'}`}
     >
       <Grid
         container
         item
         p={1}
-        // sx={{ backgroundColor: weekend ? '#304D30' : '#0F467E', color: 'white' }}
         justifyContent="space-between"
         alignItems="center"
         className={weekend ? 'weekendDay' : 'weekday'}
+        px={3}
       >
         <Grid item>
-          <Typography variant="h6" color={'white'}>
-            {'🗓️ ' +
-              date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
+          <Typography variant="h6" color={'#454545'}>
+            {date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
           </Typography>
         </Grid>
-        <Grid item>{active ? '🟢' : '🔴'}</Grid>
+        <Grid item>
+          <Indicator active={active} />
+        </Grid>
       </Grid>
-      <Grid item container flexDirection="column" px={isMobile ? 3 : 1} rowGap={1}>
+      <Grid item container flexDirection="column" px={3} rowGap={1}>
         <Grid item>
           <Typography variant="h6">{`🧑🏼‍✈️ ${currentShift?.name1 || '--'}`}</Typography>
         </Grid>
@@ -60,12 +77,12 @@ const Card = ({ date, weekend }) => {
         </Grid>
       </Grid>
 
-      <Grid item container justifyContent="center">
+      <Grid item container justifyContent="center" mb={2}>
         <Button
           variant="contained"
           color="primary"
           startIcon={active ? <EditIcon /> : <AddIcon />}
-          sx={{ px: 2 }}
+          sx={{ px: 2, borderRadius: '8px' }}
           onClick={() => setOpen(true)}
         >
           <Typography variant="h6" px={1}>

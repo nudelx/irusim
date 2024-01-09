@@ -1,4 +1,4 @@
-import { Grid, Typography, Divider } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import HE from '../utils/i18n'
 import Week from './Week'
 import { getWeekDays } from '../utils/dateUtils'
@@ -18,7 +18,7 @@ const Page = () => {
       <Grid container item xs={10} rowGap={7}>
         <Grid item container justifyContent="center" alignItems="center" flexDirection="column">
           <Typography variant="h3">{`${HE.today}`} </Typography>
-          <Divider orientation="horizontal" flexItem />
+          {/* <Divider orientation="horizontal" flexItem /> */}
           <Typography pt={2} variant="h4">
             {` ${firstString} - ${lastString}`}{' '}
           </Typography>
