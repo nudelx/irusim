@@ -83,7 +83,7 @@ const Card = ({ date, weekend, page }) => {
           // color="#606FC8"
           startIcon={active ? <EditIcon /> : <AddIcon />}
           sx={{ px: 2, borderRadius: '8px', boxShadow: 'unset' }}
-          onClick={() => setOpen(true)}
+          onClick={page >= 0 ? () => setOpen(true) : () => {}}
         >
           <Typography variant="h6" px={1}>
             {active ? HE.edit : HE.add}
