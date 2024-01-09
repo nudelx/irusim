@@ -23,7 +23,7 @@ Indicator.propTypes = {
   active: PropTypes.bool,
 }
 
-const Card = ({ date, weekend }) => {
+const Card = ({ date, weekend, page }) => {
   const [open, setOpen] = useState(false)
   const { isMobile } = useIsMobile()
   const { shifts = {} } = useDataContext()
@@ -78,6 +78,7 @@ const Card = ({ date, weekend }) => {
 
       <Grid item container justifyContent="center" mb={2}>
         <Button
+          disabled={page < 0}
           variant="contained"
           // color="#606FC8"
           startIcon={active ? <EditIcon /> : <AddIcon />}
@@ -97,6 +98,7 @@ const Card = ({ date, weekend }) => {
 Card.propTypes = {
   date: PropTypes.object,
   weekend: PropTypes.bool,
+  page: PropTypes.number,
 }
 
 export default Card
