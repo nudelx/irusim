@@ -9,7 +9,7 @@ export default defineConfig({
     eslint({
       cache: false,
       include: ['./src/**/*.js', './src/**/*.jsx'],
-      exclude: [],
+      // exclude: [],
     }),
   ],
   server: {
