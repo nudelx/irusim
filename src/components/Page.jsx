@@ -33,8 +33,8 @@ const Page = () => {
         </Grid>
         <Grid item container justifyContent="center" columnGap={1}>
           {page === 0 && (
-            <Button variant="text" endIcon={<ArrowForwardIcon />} onClick={backPage}>
-              <Typography pl={1}>{HE.back}</Typography>
+            <Button variant="text" startIcon={<ArrowForwardIcon />} onClick={backPage}>
+              <Typography pr={1}>{HE.back}</Typography>
             </Button>
           )}
           {page !== 0 && (
@@ -43,8 +43,8 @@ const Page = () => {
             </Button>
           )}
           {page === 0 && (
-            <Button variant="text" startIcon={<ArrowBackIcon />} onClick={nextPage}>
-              <Typography pr={1}>{HE.next}</Typography>
+            <Button variant="text" endIcon={<ArrowBackIcon />} onClick={nextPage}>
+              <Typography pl={1}>{HE.next}</Typography>
             </Button>
           )}
         </Grid>
