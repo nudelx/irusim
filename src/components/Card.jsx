@@ -30,7 +30,6 @@ const Card = ({ date, weekend }) => {
   const today = new Date().toLocaleDateString().replaceAll('/', '_')
   const key = date.toLocaleDateString().replaceAll('/', '_')
   const currentShift = shifts[key] || {}
-  console.log('currentShift', currentShift)
   const active = !!(currentShift?.name1 && currentShift?.name2)
   return (
     <Grid

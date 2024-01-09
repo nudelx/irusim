@@ -31,7 +31,6 @@ export const DataProvider = ({ children }) => {
     const shiftRefs = ref(database, 'shifts/')
     onValue(shiftRefs, (snapshot) => {
       if (snapshot.exists()) {
-        console.log('data shifts', snapshot.val())
         setShifts(snapshot.val())
       } else {
         console.log('No data available')
