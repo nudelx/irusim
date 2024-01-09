@@ -23,4 +23,4 @@ export const analytics = getAnalytics(app)
 export const auth = getAuth(app)
 export const database = getDatabase(app)
 export const db = ref(database)
-export const dbName = 'shifts'
+export const dbName = window.location.host === 'nudelx.github.io' ? 'testShits' : 'shifts'

@@ -1,5 +1,5 @@
 import { createContext, useMemo, useEffect, useContext, useState, useCallback } from 'react'
-import { set, onValue, ref, database } from '../db/firebase'
+import { set, onValue, ref, database, dbName } from '../db/firebase'
 import PropTypes from 'prop-types'
 
 const INITIAL_STATE = Object.freeze({
@@ -16,7 +16,7 @@ export const DataProvider = ({ children }) => {
   const [currentWeek, setCurrentWeek] = useState(true)
 
   const saveShift = useCallback(({ stringDate, shift }) => {
-    set(ref(database, 'shifts/' + stringDate.replaceAll('/', '_')), {
+    set(ref(database, `${dbName}/` + stringDate.replaceAll('/', '_')), {
       ...shift,
     })
       .then(() => {
@@ -28,7 +28,7 @@ export const DataProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    const shiftRefs = ref(database, 'shifts/')
+    const shiftRefs = ref(database, `${dbName}/`)
     onValue(shiftRefs, (snapshot) => {
       if (snapshot.exists()) {
         setShifts(snapshot.val())
