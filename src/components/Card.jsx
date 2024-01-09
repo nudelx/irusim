@@ -14,7 +14,7 @@ const Indicator = ({ active }) => (
       width: '20px',
       height: '20px',
       borderRadius: '50%',
-      backgroundColor: active ? '#218621' : '#db0000',
+      backgroundColor: active ? '#26bf26' : '#d95252',
     }}
   ></Box>
 )
@@ -30,8 +30,7 @@ const Card = ({ date, weekend }) => {
   const today = new Date().toLocaleDateString().replaceAll('/', '_')
   const key = date.toLocaleDateString().replaceAll('/', '_')
   const currentShift = shifts[key] || {}
-  console.log('currentShift', currentShift)
-  const active = currentShift?.name1 && currentShift?.name2
+  const active = !!(currentShift?.name1 && currentShift?.name2)
   return (
     <Grid
       container
@@ -60,7 +59,7 @@ const Card = ({ date, weekend }) => {
         px={3}
       >
         <Grid item>
-          <Typography variant="h6" color={'#111'}>
+          <Typography variant="h6" color={'#fff'}>
             {date.toLocaleDateString('he', { month: 'short', day: 'numeric', weekday: 'long' })}
           </Typography>
         </Grid>
@@ -80,9 +79,9 @@ const Card = ({ date, weekend }) => {
       <Grid item container justifyContent="center" mb={2}>
         <Button
           variant="contained"
-          color="primary"
+          // color="#606FC8"
           startIcon={active ? <EditIcon /> : <AddIcon />}
-          sx={{ px: 2, borderRadius: '8px' }}
+          sx={{ px: 2, borderRadius: '8px', boxShadow: 'unset' }}
           onClick={() => setOpen(true)}
         >
           <Typography variant="h6" px={1}>

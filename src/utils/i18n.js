@@ -15,6 +15,9 @@ const HE = {
   login: 'כניסה',
   logout: `יְצִיאָה`,
   sayar: `סייר`,
+  next: 'הבא',
+  back: 'קודם',
+  goBack: 'חזרה',
 }
 
 export default HE

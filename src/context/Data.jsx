@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 const INITIAL_STATE = Object.freeze({
   shifts: null,
   currentWeek: true,
+  page: 0,
 })
 
 export const DataContext = createContext(INITIAL_STATE)
@@ -13,6 +14,7 @@ export const useDataContext = () => useContext(DataContext)
 export const DataProvider = ({ children }) => {
   const [shifts, setShifts] = useState({})
   const [currentWeek, setCurrentWeek] = useState(true)
+
   const saveShift = useCallback(({ stringDate, shift }) => {
     set(ref(database, 'shifts/' + stringDate.replaceAll('/', '_')), {
       ...shift,
@@ -29,7 +31,6 @@ export const DataProvider = ({ children }) => {
     const shiftRefs = ref(database, 'shifts/')
     onValue(shiftRefs, (snapshot) => {
       if (snapshot.exists()) {
-        console.log('data shifts', snapshot.val())
         setShifts(snapshot.val())
       } else {
         console.log('No data available')
