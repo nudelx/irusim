@@ -10,7 +10,7 @@ const INITIAL_STATE = Object.freeze({
 export const AuthContext = createContext(INITIAL_STATE)
 export const useAuthContext = () => useContext(AuthContext)
 
-export const AuthContextProvider = ({ children }) => {
+export const AuthContextProvider = ({ children, ...props }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -69,7 +69,11 @@ export const AuthContextProvider = ({ children }) => {
     [setUser, user, SignIn, loading, SignOut, error],
   )
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={value} {...props}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 AuthContextProvider.propTypes = {

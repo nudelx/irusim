@@ -4,8 +4,10 @@ import { useCallback, useEffect, useState } from 'react'
 import HE from '../utils/i18n'
 import useIsMobile from '../hooks/useIsMobile'
 import { useDataContext } from '../context/Data'
+import { useTheme } from '@mui/material/styles'
 
 const Form = ({ date, close, open, shift }) => {
+  const theme = useTheme()
   const hours = '19:00-21:00'
   const [name1, setName1] = useState(shift?.name1 || '')
   const [name2, setName2] = useState(shift?.name2 || '')
@@ -18,7 +20,6 @@ const Form = ({ date, close, open, shift }) => {
       date,
       hours,
     }
-    console.log(shift)
     saveShift({ stringDate: date.toLocaleDateString(), shift })
     close()
   }, [date, close, name1, name2, saveShift])
@@ -40,7 +41,11 @@ const Form = ({ date, close, open, shift }) => {
     >
       <Grid
         item
-        sx={{ backgroundColor: 'white', borderRadius: '10px', maxWidth: '600px' }}
+        sx={{
+          backgroundColor: theme.palette.background.default,
+          borderRadius: '10px',
+          maxWidth: '600px',
+        }}
         xs={isMobile ? 12 : 8}
         px={isMobile ? 1 : 10}
         py={2}
