@@ -4,6 +4,7 @@ import Login from './Login'
 import { useAuthContext } from '../context/Auth'
 import CircularProgress from '@mui/material/CircularProgress'
 import { Grid } from '@mui/material'
+import PropTypes from 'prop-types'
 import { DataProvider } from '../context/Data'
 
 const Loading = () => (
@@ -23,7 +24,7 @@ const Loading = () => (
   </Grid>
 )
 
-const Gate = () => {
+const Gate = ({ setDark }) => {
   const { user, loading, SignOut } = useAuthContext()
   if (loading) return <Loading />
   return (
@@ -31,7 +32,7 @@ const Gate = () => {
       {user ? (
         <DataProvider>
           <div dir="rtl">
-            <NavBar signOut={SignOut} user={user} />
+            <NavBar signOut={SignOut} user={user} setDark={setDark} />
             <Page />
           </div>
         </DataProvider>
@@ -40,6 +41,10 @@ const Gate = () => {
       )}
     </>
   )
+}
+
+Gate.propTypes = {
+  setDark: PropTypes.func,
 }
 
 export default Gate
