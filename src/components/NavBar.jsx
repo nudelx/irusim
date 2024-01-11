@@ -27,7 +27,7 @@ const NavBar = ({ signOut, user, setDark }) => {
             {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness5Icon />}
           </IconButton>
           {user && (
-            <IconButton size="large" onClick={() => signOut()}>
+            <IconButton size="small" onClick={() => signOut()}>
               <LogoutIcon />
             </IconButton>
           )}
