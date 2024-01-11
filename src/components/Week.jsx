@@ -14,7 +14,7 @@ const Week = ({ days, page }) => {
         ))}
       </Grid>
 
-      <Grid item container justifyContent="center">
+      <Grid item container justifyContent="center" mb={6}>
         {weekend.map((d) => (
           <Card weekend date={d} key={d.getTime()} page={page} />
         ))}

@@ -1,4 +1,4 @@
-import { Grid, Typography, Button } from '@mui/material'
+import { Grid, Typography, Button, Box } from '@mui/material'
 import HE from '../utils/i18n'
 import Week from './Week'
 import { getWeekPerPage } from '../utils/dateUtils'
@@ -19,7 +19,12 @@ const Page = () => {
   return (
     <Grid
       container
-      sx={{ height: '100vh', width: '100vw', paddingTop: 15 }}
+      sx={{
+        minHeight: '100vh',
+        width: '100vw',
+        paddingTop: 15,
+        position: 'relative',
+      }}
       justifyContent="center"
       alignItems="flex-start"
     >
@@ -54,6 +59,19 @@ const Page = () => {
           </Grid>
         </Grid>
       </Grid>
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '0px',
+          width: '100%',
+          justifyContent: 'center',
+          display: 'flex',
+        }}
+      >
+        <Typography variant="subtitle2" sx={{ opacity: 0.3 }} noWrap textAlign="center">
+          {'Created and developed by Alex Nudelman © 2024'}
+        </Typography>
+      </Box>
     </Grid>
   )
 }
