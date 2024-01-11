@@ -57,7 +57,7 @@ const Page = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Box
+      {/* <Box
         sx={{
           position: 'absolute',
           bottom: '0px',
@@ -65,7 +65,7 @@ const Page = () => {
           justifyContent: 'center',
           display: 'flex',
         }}
-      ></Box>
+      ></Box> */}
     </Grid>
   )
 }
