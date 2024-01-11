@@ -19,7 +19,12 @@ const Page = () => {
   return (
     <Grid
       container
-      sx={{ height: '100vh', width: '100vw', paddingTop: 15, position: 'relative' }}
+      sx={{
+        minHeight: '100vh',
+        width: '100vw',
+        paddingTop: 15,
+        position: 'relative',
+      }}
       justifyContent="center"
       alignItems="flex-start"
     >
@@ -51,13 +56,10 @@ const Page = () => {
         <Grid container mt={5} justifyContent="center">
           <Grid item>
             <Week days={days} page={page} />
-            {/* <Typography variant="subtitle2" sx={{ opacity: 0.3 }} noWrap textAlign="center">
-              {'Created and developed by Alex Nudelman © 2024'}
-            </Typography> */}
           </Grid>
         </Grid>
       </Grid>
-      {/* <Box
+      <Box
         sx={{
           position: 'absolute',
           bottom: '0px',
@@ -65,7 +67,11 @@ const Page = () => {
           justifyContent: 'center',
           display: 'flex',
         }}
-      ></Box> */}
+      >
+        <Typography variant="subtitle2" sx={{ opacity: 0.3 }} noWrap textAlign="center">
+          {'Created and developed by Alex Nudelman © 2024'}
+        </Typography>
+      </Box>
     </Grid>
   )
 }
