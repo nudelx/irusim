@@ -1,7 +1,6 @@
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Box from '@mui/material/Box'
 // import MenuIcon from '@mui/icons-material/Menu'
@@ -10,6 +9,7 @@ import PropTypes from 'prop-types'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
 import Brightness5Icon from '@mui/icons-material/Brightness5'
 import { useTheme } from '@mui/material/styles'
+import LogoutIcon from '@mui/icons-material/Logout'
 
 const NavBar = ({ signOut, user, setDark }) => {
   const theme = useTheme()
@@ -27,9 +27,9 @@ const NavBar = ({ signOut, user, setDark }) => {
             {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness5Icon />}
           </IconButton>
           {user && (
-            <Button color="inherit" onClick={() => signOut()}>
-              {HE.logout}
-            </Button>
+            <IconButton size="large" onClick={() => signOut()}>
+              <LogoutIcon />
+            </IconButton>
           )}
         </Toolbar>
       </AppBar>
