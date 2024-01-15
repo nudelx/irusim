@@ -20,7 +20,7 @@ const Form = ({ date, close, open, shift }) => {
       date,
       hours,
     }
-    saveShift({ stringDate: date.toLocaleDateString(), shift })
+    saveShift({ stringDate: date.toLocaleDateString('en-US'), shift })
     close()
   }, [date, close, name1, name2, saveShift])
 

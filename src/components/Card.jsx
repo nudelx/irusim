@@ -27,8 +27,8 @@ const Card = ({ date, weekend, page }) => {
   const [open, setOpen] = useState(false)
   const { isMobile } = useIsMobile()
   const { shifts = {} } = useDataContext()
-  const today = new Date().toLocaleDateString().replaceAll('/', '_')
-  const key = date.toLocaleDateString().replaceAll('/', '_')
+  const today = new Date().toLocaleDateString('en-US').replaceAll('/', '_')
+  const key = date.toLocaleDateString('en-US').replaceAll('/', '_')
   const currentShift = shifts[key] || {}
   const active = !!(currentShift?.name1 && currentShift?.name2)
   return (
