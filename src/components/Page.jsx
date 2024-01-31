@@ -69,7 +69,7 @@ const Page = () => {
         }}
       >
         <Typography variant="subtitle2" sx={{ opacity: 0.3 }} noWrap textAlign="center">
-          {'Created and developed by Alex Nudelman © 2024'}
+          {'Created and developed by Alex Nudelman © 2024 v1.0'}
         </Typography>
       </Box>
     </Grid>

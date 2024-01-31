@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
 import { getAuth } from 'firebase/auth'
 import { getDatabase, ref } from 'firebase/database'
-export { ref, onValue, get, child, set } from 'firebase/database'
+export { ref, onValue, get, child, set, remove } from 'firebase/database'
 export { signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
 
 const firebaseConfig = {
