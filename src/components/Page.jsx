@@ -68,7 +68,7 @@ const Page = () => {
           display: 'flex',
         }}
       >
-        <Typography variant="subtitle2" sx={{ opacity: 0.3 }} noWrap textAlign="center">
+        <Typography variant="subtitle2" sx={{ opacity: 0.2 }} noWrap textAlign="center">
           {'Created and developed by Alex Nudelman © 2024 v1.1'}
         </Typography>
       </Box>
