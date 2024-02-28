@@ -49,10 +49,10 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
           flexWrap="nowrap"
           mt={2}
         >
-          {/* <Typography variant="h4" ml={1}>{` 🕓`}</Typography>
-          <Typography variant="h5" noWrap>
+          <Typography variant="subtitle1" ml={1}>{` 🕓`}</Typography>
+          <Typography variant="h6" noWrap>
             {hours}
-          </Typography> */}
+          </Typography>
         </Grid>
       </Grid>
 
