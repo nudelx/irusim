@@ -31,6 +31,7 @@ const Form = ({ date, close, open, shift }) => {
     <Modal
       open={open}
       onClose={close}
+      layout={'fullscreen'}
       sx={{
         justifyContent: 'center',
         alignItems: 'center',
@@ -44,7 +45,7 @@ const Form = ({ date, close, open, shift }) => {
           borderRadius: '10px',
           maxWidth: '600px',
           overflow: 'scroll',
-          maxHeight: '90vh',
+          maxHeight: isMobile ? '100vh' : '90vh',
         }}
         xs={isMobile ? 12 : 8}
         px={isMobile ? 1 : 10}

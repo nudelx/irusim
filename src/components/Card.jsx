@@ -84,6 +84,9 @@ const Card = ({ date, weekend, page }) => {
   const key = date.toLocaleDateString('en-US').replaceAll('/', '_')
   const currentShift = shifts[key] || {}
   const active = currentShift.dayReady
+  const { isAdmin } = user
+  const offSet = isAdmin ? 60 : 0
+  console.log('isAdmin', isAdmin)
   return (
     <Grid
       container
@@ -92,12 +95,11 @@ const Card = ({ date, weekend, page }) => {
       mb={isMobile ? 8 : 1}
       key={date.getTime()}
       sx={{
-        width: isMobile ? '90%' : '250px',
-        height: isMobile ? '600px' : '620px',
+        width: isMobile ? '90vw' : '250px',
+        height: `${620 + offSet}px`,
         border: '1px solid #d4cdcdba',
         justifyContent: 'flex-start',
         borderRadius: '8px',
-        overflow: 'hidden',
         pb: 2,
       }}
       className={`${today === key ? 'today' : 'card'}`}

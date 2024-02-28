@@ -1,8 +1,17 @@
-import { Grid, Typography, TextField, FormGroup, Checkbox, FormControlLabel } from '@mui/material'
+import {
+  Grid,
+  Typography,
+  TextField,
+  FormGroup,
+  Checkbox,
+  FormControlLabel,
+  useTheme,
+} from '@mui/material'
 import PropTypes from 'prop-types'
 import HE from '../utils/i18n'
 
 const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
+  const theme = useTheme()
   const mergeState = (state, newState) => {
     const merged = {
       ...state,
@@ -18,7 +27,11 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
   }
 
   return (
-    <Grid className="box-divider" py={2} my={1}>
+    <Grid
+      sx={{ border: `1px solid ${theme.palette.mode === 'dark' ? '#353333' : '#d4cdcdba'}` }}
+      py={2}
+      my={1}
+    >
       <Grid
         item
         container
@@ -36,10 +49,10 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
           flexWrap="nowrap"
           mt={2}
         >
-          <Typography variant="h4" ml={1}>{` 🕓`}</Typography>
+          {/* <Typography variant="h4" ml={1}>{` 🕓`}</Typography>
           <Typography variant="h5" noWrap>
             {hours}
-          </Typography>
+          </Typography> */}
         </Grid>
       </Grid>
 
@@ -54,7 +67,7 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
               id="outlined-basic"
               label={HE.name}
               variant="outlined"
-              value={shiftState[hours].name1}
+              value={shiftState[hours]?.name1}
               onChange={(e) =>
                 setShiftState((state) => mergeState(state, { name1: e.target.value }))
               }
@@ -62,13 +75,14 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
             />
           </Grid>
 
-          <Grid container item justifyContent="flex-start">
+          <Grid container item>
             <FormGroup>
               <FormControlLabel
                 labelPlacement="end"
+                sx={{ marginRight: '0' }}
                 control={
                   <Checkbox
-                    checked={!!shiftState[hours].armed1}
+                    checked={!!shiftState[hours]?.armed1}
                     onChange={(e) =>
                       setShiftState((state) => mergeState(state, { armed1: e.target.checked }))
                     }
@@ -90,7 +104,7 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
               id="outlined-basic"
               label={HE.name}
               variant="outlined"
-              value={shiftState[hours].name2}
+              value={shiftState[hours]?.name2}
               onChange={(e) =>
                 setShiftState((state) => mergeState(state, { name2: e.target.value }))
               }
@@ -103,7 +117,7 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={!!shiftState[hours].armed2}
+                    checked={!!shiftState[hours]?.armed2}
                     onChange={(e) =>
                       setShiftState((state) => mergeState(state, { armed2: e.target.checked }))
                     }
