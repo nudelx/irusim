@@ -17,14 +17,17 @@ html:root {
 .weekday {
   background-color: #356991;
   color: '#fff';
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius:8px;
   
 }
 
 .weekendDay {
   background-color: #356991;
   color: '#fff';
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius:8px;
+  
 }
 
 .box-divider {
