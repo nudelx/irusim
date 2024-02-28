@@ -15,7 +15,7 @@ const Form = ({ date, close, open, shift }) => {
   const { isMobile } = useIsMobile()
 
   const checkIsReady = useCallback(
-    () => shiftHours.some((hour) => shiftState[hour].ready !== true),
+    () => shiftHours.some((hour) => shiftState[hour]?.ready !== true),
     [shiftState],
   )
 
