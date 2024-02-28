@@ -30,28 +30,35 @@ const ViewSection = ({ name1, name2, hour, armed1, armed2 }) => {
   const theme = useTheme()
 
   return (
-    <Grid item container mt={3} rowGap={2}>
+    <Grid item container mt={1} rowGap={2}>
       <Grid
         item
         container
-        justifyContent={'center'}
+        justifyContent="space-between"
         alignItems="center"
         flexDirection="row"
         sx={{ opacity: 0.7 }}
       >
-        <Typography variant="body2" ml={1}>{` 🕓`}</Typography>
-        <Typography variant="body1" noWrap>
-          {hour}
-        </Typography>
+        <Grid item container justifyContent="flex-start" alignItems="center" width="60%">
+          <Typography variant="body2" ml={1}>{` 🕓`}</Typography>
+          <Typography variant="body1">{hour}</Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant="body1">{}</Typography>
+        </Grid>
       </Grid>
       <Grid item container flexDirection="column" px={3} rowGap={1} mt={1}>
         <Grid item container flexDirection="row" justifyContent="space-between">
           <Typography variant="subtitle1">{`🧑🏼‍✈️ ${name1 || '--'}`}</Typography>
-          <Typography variant="subtitle2">{armed1 ? '🔫' : ''}</Typography>
+          <Typography variant="subtitle2" sx={{ opacity: 0.6 }}>
+            {armed1 ? '🔫' : ''}
+          </Typography>
         </Grid>
         <Grid item container flexDirection="row" justifyContent="space-between">
           <Typography variant="subtitle1">{`🧑🏼‍✈️ ${name2 || '--'}`}</Typography>
-          <Typography variant="subtitle2">{armed2 ? '🔫' : ''}</Typography>
+          <Typography variant="subtitle2" sx={{ opacity: 0.6 }}>
+            {armed2 ? '🔫' : ''}
+          </Typography>
         </Grid>
       </Grid>
       <Grid item container justifyContent="center">
