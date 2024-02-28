@@ -3,17 +3,22 @@ import PropTypes from 'prop-types'
 import HE from '../utils/i18n'
 
 const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
-  const mergeState = (state, newState) => ({
-    ...state,
-    [hours]: {
-      ...state[hours],
-      ...newState,
-      ready: !!(newState.name1?.length && newState.name2?.length),
-    },
-  })
+  const mergeState = (state, newState) => {
+    const merged = {
+      ...state,
+      [hours]: {
+        ...state[hours],
+        ...newState,
+      },
+    }
+    return {
+      ...merged,
+      [hours]: { ...merged[hours], ready: !!(merged[hours].name1 && merged[hours].name1) },
+    }
+  }
 
   return (
-    <Grid sx={{ border: '1px solid #2d2828' }} py={2} my={1}>
+    <Grid className="box-divider" py={2} my={1}>
       <Grid
         item
         container

@@ -24,3 +24,7 @@ html:root {
   background-color: #356991;
   color: '#fff'
 }
+
+.box-divider {
+  border: '1px solid #2d2828'
+}

@@ -10,15 +10,12 @@ import Section from './Section'
 
 const Form = ({ date, close, open, shift }) => {
   const theme = useTheme()
-
-  console.log('shift', shift)
   const [shiftState, setShiftState] = useState(shift || {})
-
   const { saveShift } = useDataContext()
   const { isMobile } = useIsMobile()
 
   const checkIsReady = useCallback(
-    () => shiftHours.some((hour) => console.log(hour) || shiftState[hour].ready !== true),
+    () => shiftHours.some((hour) => shiftState[hour].ready !== true),
     [shiftState],
   )
 
