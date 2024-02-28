@@ -1,6 +1,6 @@
 const HE = {
   buttonOK: 'אישור',
-  title: 'כיתת כוננות אירוסים',
+  title: 'כיתת כוננות נתניה',
   today: 'משמרות השבוע',
   edit: 'שינוי',
   add: 'הוספה',
@@ -18,6 +18,7 @@ const HE = {
   next: 'הבא',
   back: 'קודם',
   goBack: 'חזרה',
+  armed: 'חמוש',
 }
 
 export const EN = {
