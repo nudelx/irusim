@@ -3,7 +3,14 @@ import PropTypes from 'prop-types'
 import HE from '../utils/i18n'
 
 const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
-  const mergeState = (state, newState) => ({ ...state, [hours]: { ...state[hours], ...newState } })
+  const mergeState = (state, newState) => ({
+    ...state,
+    [hours]: {
+      ...state[hours],
+      ...newState,
+      ready: !!(newState.name1?.length && newState.name2?.length),
+    },
+  })
 
   return (
     <Grid sx={{ border: '1px solid #2d2828' }} py={2} my={1}>
@@ -42,7 +49,7 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
               id="outlined-basic"
               label={HE.name}
               variant="outlined"
-              value={shiftState.name1}
+              value={shiftState[hours].name1}
               onChange={(e) =>
                 setShiftState((state) => mergeState(state, { name1: e.target.value }))
               }
@@ -56,7 +63,7 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
                 labelPlacement="end"
                 control={
                   <Checkbox
-                    checked={shiftState.armed1}
+                    checked={!!shiftState[hours].armed1}
                     onChange={(e) =>
                       setShiftState((state) => mergeState(state, { armed1: e.target.checked }))
                     }
@@ -78,7 +85,7 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
               id="outlined-basic"
               label={HE.name}
               variant="outlined"
-              value={shiftState.name2}
+              value={shiftState[hours].name2}
               onChange={(e) =>
                 setShiftState((state) => mergeState(state, { name2: e.target.value }))
               }
@@ -91,7 +98,7 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={shiftState.armed2}
+                    checked={!!shiftState[hours].armed2}
                     onChange={(e) =>
                       setShiftState((state) => mergeState(state, { armed2: e.target.checked }))
                     }

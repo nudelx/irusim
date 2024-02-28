@@ -37,7 +37,6 @@ export const DataProvider = ({ children }) => {
   }, [])
 
   const saveShift = useCallback(({ stringDate, shift }) => {
-    console.log('here', shift)
     set(ref(database, `${dbName}/` + stringDate.replaceAll('/', '_')), {
       ...shift,
     })

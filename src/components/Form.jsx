@@ -11,29 +11,24 @@ import Section from './Section'
 const Form = ({ date, close, open, shift }) => {
   const theme = useTheme()
 
-  // const hours = '19:00-21:00'
-  // const [name1, setName1] = useState(shift?.name1 )
-  // const [name2, setName2] = useState(shift?.name2 || '')
-
+  console.log('shift', shift)
   const [shiftState, setShiftState] = useState(shift || {})
 
   const { saveShift } = useDataContext()
   const { isMobile } = useIsMobile()
-  const handleSave = useCallback(() => {
-    // const shift = {
-    //   name1,
-    //   name2,
-    //   date,
-    //   hours,
-    // }
-    saveShift({ stringDate: date.toLocaleDateString('en-US'), shift: shiftState })
-    close()
-  }, [date, close, saveShift, shiftState])
 
-  // useEffect(() => {
-  //   setName1(shift?.name1 || '')
-  //   setName2(shift?.name2 || '')
-  // }, [shift])
+  const checkIsReady = useCallback(
+    () => shiftHours.some((hour) => console.log(hour) || shiftState[hour].ready !== true),
+    [shiftState],
+  )
+
+  const handleSave = useCallback(() => {
+    saveShift({
+      stringDate: date.toLocaleDateString('en-US'),
+      shift: { ...shiftState, dayReady: !checkIsReady(shiftState) },
+    })
+    close()
+  }, [date, close, saveShift, shiftState, checkIsReady])
 
   return (
     <Modal
