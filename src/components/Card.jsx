@@ -26,7 +26,7 @@ Indicator.propTypes = {
   active: PropTypes.bool,
 }
 
-const ViewSection = ({ name1, name2, hour, armed1, armed2, isMobile }) => {
+const ViewSection = ({ name1, name2, hour, armed1, armed2, isMobile, ready }) => {
   const theme = useTheme()
 
   return (
@@ -40,7 +40,19 @@ const ViewSection = ({ name1, name2, hour, armed1, armed2, isMobile }) => {
         sx={{ opacity: 0.7 }}
       >
         <Grid item container justifyContent="flex-start" alignItems="center" width="60%">
-          <Typography variant="body2" ml={1}>{` 🕓`}</Typography>
+          <Typography
+            variant="body2"
+            ml={1}
+            sx={{
+              backgroundColor: ready ? '#26bf26' : '',
+              borderRadius: '15px',
+              width: '20px',
+              height: '20px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
+            }}
+          >{`🕓`}</Typography>
           <Typography variant="body1">{hour}</Typography>
         </Grid>
         <Grid item>
@@ -81,6 +93,7 @@ ViewSection.propTypes = {
   armed1: PropTypes.bool,
   armed2: PropTypes.bool,
   isMobile: PropTypes.bool,
+  ready: PropTypes.bool,
 }
 
 const Card = ({ date, weekend, page }) => {
@@ -148,6 +161,7 @@ const Card = ({ date, weekend, page }) => {
               armed1={currentShift[hour]?.armed1}
               armed2={currentShift[hour]?.armed2}
               isMobile={isMobile}
+              ready={currentShift[hour]?.ready}
             />
           ))}
         </Grid>
