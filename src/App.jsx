@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { AuthContextProvider } from './context/Auth'
 import Gate from './components/Gate'
 import { useCallback, useEffect, useState } from 'react'
+
 function App() {
   const [dark, setDark] = useState(!!localStorage.getItem('isDark'))
   const setTheme = useCallback(() => {
