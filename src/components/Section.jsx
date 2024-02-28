@@ -67,7 +67,7 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
               id="outlined-basic"
               label={HE.name}
               variant="outlined"
-              value={shiftState[hours]?.name1}
+              value={shiftState[hours]?.name1 || ''}
               onChange={(e) =>
                 setShiftState((state) => mergeState(state, { name1: e.target.value }))
               }
@@ -104,7 +104,7 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
               id="outlined-basic"
               label={HE.name}
               variant="outlined"
-              value={shiftState[hours]?.name2}
+              value={shiftState[hours]?.name2 || ''}
               onChange={(e) =>
                 setShiftState((state) => mergeState(state, { name2: e.target.value }))
               }
