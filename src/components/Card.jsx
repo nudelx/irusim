@@ -47,11 +47,11 @@ const ViewSection = ({ name1, name2, hour, armed1, armed2 }) => {
       <Grid item container flexDirection="column" px={3} rowGap={1} mt={1}>
         <Grid item container flexDirection="row" justifyContent="space-between">
           <Typography variant="subtitle1">{`🧑🏼‍✈️ ${name1 || '--'}`}</Typography>
-          <Typography variant="subtitle1">{armed1 ? '🔫' : ''}</Typography>
+          <Typography variant="subtitle2">{armed1 ? '🔫' : ''}</Typography>
         </Grid>
         <Grid item container flexDirection="row" justifyContent="space-between">
           <Typography variant="subtitle1">{`🧑🏼‍✈️ ${name2 || '--'}`}</Typography>
-          <Typography variant="subtitle1">{armed2 ? '🔫' : ''}</Typography>
+          <Typography variant="subtitle2">{armed2 ? '🔫' : ''}</Typography>
         </Grid>
       </Grid>
       <Grid item container justifyContent="center">
@@ -93,7 +93,7 @@ const Card = ({ date, weekend, page }) => {
       key={date.getTime()}
       sx={{
         width: isMobile ? '90%' : '250px',
-        height: isMobile ? '300px' : '620px',
+        height: isMobile ? '600px' : '620px',
         border: '1px solid #d4cdcdba',
         justifyContent: 'flex-start',
         borderRadius: '8px',
