@@ -7,6 +7,7 @@ import { useState } from 'react'
 import Form from './Form'
 import useIsMobile from '../hooks/useIsMobile'
 import { useDataContext } from '../context/Data'
+import { useAuthContext } from '../context/Auth'
 
 const Indicator = ({ active }) => (
   <Box
@@ -25,6 +26,7 @@ Indicator.propTypes = {
 
 const Card = ({ date, weekend, page }) => {
   const [open, setOpen] = useState(false)
+  const { user } = useAuthContext()
   const { isMobile } = useIsMobile()
   const { shifts = {} } = useDataContext()
   const today = new Date().toLocaleDateString('en-US').replaceAll('/', '_')
@@ -75,20 +77,21 @@ const Card = ({ date, weekend, page }) => {
           <Typography variant="h6">{`🧑🏼‍✈️ ${currentShift?.name2 || '--'}`}</Typography>
         </Grid>
       </Grid>
-
       <Grid item container justifyContent="center" mb={2}>
-        <Button
-          disabled={page < 0}
-          variant="contained"
-          // color="#606FC8"
-          startIcon={active ? <EditIcon /> : <AddIcon />}
-          sx={{ px: 2, borderRadius: '8px', boxShadow: 'unset' }}
-          onClick={page >= 0 ? () => setOpen(true) : () => {}}
-        >
-          <Typography variant="h6" px={1}>
-            {active ? HE.edit : HE.add}
-          </Typography>
-        </Button>
+        {user.isAdmin && (
+          <Button
+            disabled={page < 0}
+            variant="contained"
+            // color="#606FC8"
+            startIcon={active ? <EditIcon /> : <AddIcon />}
+            sx={{ px: 2, borderRadius: '8px', boxShadow: 'unset' }}
+            onClick={page >= 0 ? () => setOpen(true) : () => {}}
+          >
+            <Typography variant="h6" px={1}>
+              {active ? HE.edit : HE.add}
+            </Typography>
+          </Button>
+        )}
       </Grid>
       <Form open={open} date={date} close={() => setOpen(false)} shift={currentShift} />
     </Grid>

@@ -26,6 +26,7 @@ const Loading = () => (
 
 const Gate = ({ setDark }) => {
   const { user, loading, SignOut } = useAuthContext()
+
   if (loading) return <Loading />
   return (
     <>

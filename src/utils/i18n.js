@@ -18,6 +18,7 @@ const HE = {
   next: 'הבא',
   back: 'קודם',
   goBack: 'חזרה',
+  armed: 'חמוש',
 }
 
 export const EN = {
