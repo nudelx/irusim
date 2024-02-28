@@ -16,13 +16,15 @@ html:root {
 
 .weekday {
   background-color: #356991;
-  color: '#fff'
+  color: '#fff';
+  border-radius: 8px;
   
 }
 
 .weekendDay {
   background-color: #356991;
-  color: '#fff'
+  color: '#fff';
+  border-radius: 8px;
 }
 
 .box-divider {
