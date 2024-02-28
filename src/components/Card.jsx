@@ -86,7 +86,6 @@ const Card = ({ date, weekend, page }) => {
   const active = currentShift.dayReady
   const { isAdmin } = user
   const offSet = isAdmin ? 60 : 0
-  console.log('isAdmin', isAdmin)
   return (
     <Grid
       container

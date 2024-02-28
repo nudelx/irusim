@@ -13,6 +13,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 
 const NavBar = ({ signOut, user, setDark }) => {
   const theme = useTheme()
+  const { isAdmin } = user
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar>
@@ -21,7 +22,7 @@ const NavBar = ({ signOut, user, setDark }) => {
             {/* <MenuIcon /> */}
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} pr={2}>
-            {`🧑🏼‍✈️ ${HE.title}`}
+            {`${isAdmin ? ' 🥸 ' : '🧑🏼‍✈️'} ${HE.title}`}
           </Typography>
           <IconButton size="large" onClick={setDark}>
             {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness5Icon />}
