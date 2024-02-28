@@ -26,11 +26,11 @@ Indicator.propTypes = {
   active: PropTypes.bool,
 }
 
-const ViewSection = ({ name1, name2, hour, armed1, armed2 }) => {
+const ViewSection = ({ name1, name2, hour, armed1, armed2, isMobile }) => {
   const theme = useTheme()
 
   return (
-    <Grid item container mt={1} rowGap={2}>
+    <Grid item container mt={isMobile ? 3 : 1} rowGap={2} px={1}>
       <Grid
         item
         container
@@ -66,7 +66,7 @@ const ViewSection = ({ name1, name2, hour, armed1, armed2 }) => {
           item
           sx={{
             borderTop: `1px solid ${theme.palette.mode === 'dark' ? '#353333' : '#d4cdcdba'}`,
-            width: '80%',
+            width: '90%',
           }}
         />
       </Grid>
@@ -80,6 +80,7 @@ ViewSection.propTypes = {
   hour: PropTypes.string,
   armed1: PropTypes.bool,
   armed2: PropTypes.bool,
+  isMobile: PropTypes.bool,
 }
 
 const Card = ({ date, weekend, page }) => {
@@ -102,7 +103,7 @@ const Card = ({ date, weekend, page }) => {
       key={date.getTime()}
       sx={{
         width: isMobile ? '90vw' : '250px',
-        height: `${620 + offSet}px`,
+        height: `${540 + offSet}px`,
         border: '1px solid #d4cdcdba',
         justifyContent: 'flex-start',
         borderRadius: '8px',
@@ -146,6 +147,7 @@ const Card = ({ date, weekend, page }) => {
               hour={hour}
               armed1={currentShift[hour]?.armed1}
               armed2={currentShift[hour]?.armed2}
+              isMobile={isMobile}
             />
           ))}
         </Grid>
