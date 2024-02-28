@@ -63,13 +63,13 @@ const ViewSection = ({ name1, name2, hour, armed1, armed2, isMobile, ready }) =>
         <Grid item container flexDirection="row" justifyContent="space-between">
           <Typography variant="subtitle1">{`🧑🏼‍✈️ ${name1 || '--'}`}</Typography>
           <Typography variant="subtitle2" sx={{ opacity: 0.6 }}>
-            {armed1 ? '🔫' : ''}
+            {armed1 && name1.length ? '🔫' : ''}
           </Typography>
         </Grid>
         <Grid item container flexDirection="row" justifyContent="space-between">
           <Typography variant="subtitle1">{`🧑🏼‍✈️ ${name2 || '--'}`}</Typography>
           <Typography variant="subtitle2" sx={{ opacity: 0.6 }}>
-            {armed2 ? '🔫' : ''}
+            {armed2 && name2.length ? '🔫' : ''}
           </Typography>
         </Grid>
       </Grid>

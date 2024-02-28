@@ -82,6 +82,7 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
                 sx={{ marginRight: '0' }}
                 control={
                   <Checkbox
+                    disabled={!shiftState[hours]?.name1?.length}
                     checked={!!shiftState[hours]?.armed1}
                     onChange={(e) =>
                       setShiftState((state) => mergeState(state, { armed1: e.target.checked }))
@@ -117,6 +118,7 @@ const Section = ({ isMobile, hours, shiftState, setShiftState }) => {
               <FormControlLabel
                 control={
                   <Checkbox
+                    disabled={!shiftState[hours]?.name2?.length}
                     checked={!!shiftState[hours]?.armed2}
                     onChange={(e) =>
                       setShiftState((state) => mergeState(state, { armed2: e.target.checked }))
