@@ -27,6 +27,7 @@
   },
   "plugins": ["react-refresh", "react", "react-hooks", "prettier"],
   "rules": {
+    "no-unused-vars": "warn",
     // "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }],
     "react/react-in-jsx-scope": "off",
     "prettier/prettier": ["error"]
