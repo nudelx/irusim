@@ -7,7 +7,7 @@ const Week = ({ days, page }) => {
   const weekend = days && days.slice(-2)
 
   return (
-    <Grid container justifyContent="center" rowGap={4}>
+    <Grid container justifyContent="center" rowGap={4} sx={12}>
       <Grid item container justifyContent="center">
         {week.map((d) => (
           <Card date={d} key={d.getTime()} page={page} />

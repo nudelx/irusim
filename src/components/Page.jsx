@@ -5,8 +5,10 @@ import { getWeekPerPage } from '../utils/dateUtils'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useState, useCallback } from 'react'
+import useIsMobile from '../hooks/useIsMobile'
 
 const Page = () => {
+  const { isMobile } = useIsMobile()
   const [page, setPage] = useState(0)
   const { days, first, last } = getWeekPerPage(page)
   const backPage = useCallback(() => setPage(-1), [])
@@ -28,7 +30,7 @@ const Page = () => {
       justifyContent="center"
       alignItems="flex-start"
     >
-      <Grid container item xs={10} rowGap={4}>
+      <Grid container item xs={isMobile ? 12 : 10} rowGap={4}>
         <Grid item container justifyContent="center" alignItems="center" flexDirection="column">
           <Typography variant="h3">{`${HE.today}`} </Typography>
           {/* <Divider orientation="horizontal" flexItem /> */}
@@ -53,7 +55,7 @@ const Page = () => {
             </Button>
           )}
         </Grid>
-        <Grid container mt={5} justifyContent="center">
+        <Grid container mt={5} justifyContent="center" xs={12}>
           <Grid item>
             <Week days={days} page={page} />
           </Grid>

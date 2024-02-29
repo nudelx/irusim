@@ -132,6 +132,7 @@ const Card = ({ date, weekend, page }) => {
         alignItems="center"
         className={weekend ? 'weekendDay' : 'weekday'}
         px={3}
+        width={'100%'}
       >
         <Grid item>
           <Typography variant="h6" color={'#fff'}>
